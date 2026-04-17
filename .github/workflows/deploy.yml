@@ -1,4 +1,4 @@
-name: Deploy Node.js JSON Counter
+name: Deploy Node.js to Azure
 
 on:
   push:
@@ -8,17 +8,16 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
           node-version: '22'
 
       - run: npm install
 
-      - run: zip -r app.zip . --exclude "*.git*"
+      - run: zip -r app.zip .
 
       - uses: azure/webapps-deploy@v3
         with:
